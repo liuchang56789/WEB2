@@ -122,7 +122,7 @@
 		#shuliangtongji{
 			margin-top: 50px;
 		}
-		#shuliangtongji button,span{
+		#shuliangtongji button,input,span{
 			float: left;
 		}
 
@@ -158,6 +158,18 @@
 		#line12 img{
 			float: left;       
 		}
+
+
+		#img2{
+			float: left;
+			z-index: 9999;
+			margin-left: 408px;
+			margin-top: -412px;
+			display:none; width:400px;height:400px;overflow:hidden;
+		}
+		/*#img2{position:absolute;right:0;top:0;display:none; width:400px;height:400px;overflow:hidden;}*/
+		/*#Bimg{position:absolute;left:0;top:0;}*/
+		#slider{width:150px;height:150px;position:absolute;left:0;top:0;background:#CCC;opacity:0.4;cursor: move;display:none; filter:alpha(opacity=40);}
 	</style>
 </head>
 <body>
@@ -235,7 +247,14 @@
 		</p>
 		<div id="nextsrceen" style="height: 630px;width: 995px;float: left;margin-left: 370px;background-color: rgb(246,245,244);">
 			<div id="shangpindatu">
-				<img src="img/pp0.jpeg" alt="">
+				<!-- <img src="img/pp0.jpeg" alt=""> -->
+    			<div id="img1">
+         			<img src="img/pp0.jpeg">
+        			<div id="slider"></div>
+  				</div>
+    			<div id="img2">
+        			<img src="img/pp3.jpeg" style="" id="Bimg"/>
+    			</div>
 			</div>
 			<p style="float: left;margin-left: 20px;font-size: 16px;">韩国&nbspRE:CIPE&nbsp水晶清爽防水防晒喷雾SPF50&nbsp150/瓶</p>
 			<p style="font-size: 11px;width: 468px;margin-left: 20px;color: gray;margin-top: -5px; float: left;">【限购3件】&nbsp超透明无痕防晒，防水防汗定妆，保湿降温无黏腻。水晶防晒喷雾，喷后皮夫水润，不油，不留白，更不会像防晒霜那样抹不开，非常实用，开始存货吧。</p>
@@ -254,7 +273,7 @@
 			<div id="shuliangtongji">
 				<span style="line-height: 29px; margin-left: 30px;font-size: 14px;margin-right: 65px;">数量</span>
 				<button id="jian" style="width: 27px;height: 29px;">-</button>
-				<span id="shumu" style="width: 50px;height: 28px;text-align: center;border: 1px solid gray;">1</span>
+				<input id="shumu" value="1" style="width: 50px;height: 25px;text-align: center;border: 1px solid gray;">
 				<button id="jia" style="width: 27px;height: 29px;">+</button>
 				<span style="font-size: 14px;line-height: 29px;">&nbsp&nbsp件(库存5件)</span>
 			</div>
@@ -421,37 +440,92 @@
 		gouxuan1.innerHTML="200"+"<img src='img/duigou.png' style='position: relative;bottom: -15px;right: -25px;'>";
 		gouxuan.innerHTML="150";
 	}
+
+
+
+
 	var jia=document.getElementById("jia");
 	var jian=document.getElementById("jian");
 	var shumu=document.getElementById("shumu");
-	var shuliang=1;
+	shumu.onchange=function(){
+		if (shumu.value>5) {shumu.value=5;jia.style.cursor="not-allowed";}
+		if (shumu.value<0) {shumu.value=0;jian.style.cursor="not-allowed";}
+		if(shumu.value>0&&shumu.value<5){jia.style.cursor="pointer";jian.style.cursor="pointer";}
+	}
 	jia.onclick=function(){
 		jian.style.color="black";
-		if(shuliang<4){
-			shuliang++;
-			shumu.innerHTML=shuliang;
+		if(shumu.value<4){
+			shumu.value++;
 			jia.style.color="black";
+			jia.style.cursor="pointer";
 		}
-		if(shuliang==4){
-			shuliang++;
-			shumu.innerHTML=shuliang;
-			jia.style.color="gray";
+		if(shumu.value==4){
+			shumu.value++;
+			jia.style.cursor="not-allowed";
 		}
 	}
 	jian.onclick=function(){
 		jia.style.color="black";
-		if(shuliang>1){
-			shuliang--;
-			shumu.innerHTML=shuliang;
-			jian.style.color="black";
+		if(shumu.value>1){
+			shumu.value--;
+			jia.style.cursor="pointer";
 		}
-		if(shuliang==1){
-			shuliang--;
-			shumu.innerHTML=shuliang;
-			jian.style.color="gray";
+		if(shumu.value==1){
+			shumu.value--;
+			jian.style.cursor="not-allowed";
 		}
 	}
+
+
+
+
 	var shangpindatu=document.getElementById("shangpindatu");
+
+
+
+	var img1 = document.getElementById("img1");
+	var img2 = document.getElementById("img2");
+	var slider = document.getElementById("slider");
+	var Bimg = document.getElementById("Bimg");
+	img1.onmouseover=function(){
+	    slider.style.display='block';
+	    slider.style.backgroundColor="gray";
+		img2.style.display='block';
+ 	}
+	img1.onmouseout=function(){
+	    slider.style.display='none';
+		img2.style.display='none';
+ 	}
+  
+    img1.onmousemove=function(ev){
+		var ev=ev||event;
+		  
+		var oL=ev.clientX-shangpindatu.offsetLeft-slider.offsetWidth/2;
+		var oT=ev.clientY-shangpindatu.offsetTop-slider.offsetHeight/2;
+		var oMaxw=img1.offsetWidth-slider.offsetWidth;
+		var oMaxh=img1.offsetHeight-slider.offsetHeight;
+		oL=oL>oMaxw?oMaxw:oL<0?0:oL;
+		oT=oT>oMaxh?oMaxh:oT<0?0:oT;
+		slider.style.left = 400+oL+'px';
+		slider.style.top = 310+oT+'px' ;
+		var oBmaxw = img2.offsetWidth - Bimg.offsetWidth; 
+		var oBmaxh = img2.offsetHeight - Bimg.offsetHeight; 
+		// Bimg.style.left = ( (400+oL)/oMaxw ) * oBmaxw + 'px'
+		// Bimg.style.top = ( (310+oT)/oMaxh ) * oBmaxh + 'px'
+		console.log(oBmaxh,oBmaxw);
+		console.log(ev.clientY,ev.clientX);
+		Bimg.style.left = -((ev.clientX-400)/oMaxw )+ 'px'
+		Bimg.style.top =-((ev.clientY-310)/oMaxh )+'px'
+		Bimg.style.left ="-500px";
+		Bimg.style.top ="-500px";
+	}
+
+
+
+
+
+
+
 	var span1=document.getElementById("span1");
 	var span2=document.getElementById("span2");
 	var span3=document.getElementById("span3");
@@ -460,34 +534,41 @@
 		if(span2.style.border=="1px solid red"){
 			span3.style.border="1px solid red";
 			span2.style.border="0px solid red";
-			shangpindatu.innerHTML="<img src='img/pp1.jpeg'>"
+			tu.src='img/pp1.jpeg';
 		}
 		else{
 			span2.style.border="1px solid red";
 			span3.style.border="0px solid red";
-			shangpindatu.innerHTML="<img src='img/pp0.jpeg'>"
+			// shangpindatu.innerHTML="<img src='img/pp0.jpeg'>"
+			tu.src='img/pp0.jpeg';
 		}
 	}
 	span2.onclick=function(){
 		span2.style.border="1px solid red";
 		span3.style.border="0px solid red";
-		shangpindatu.innerHTML="<img src='img/pp0.jpeg'>"
+		tu.src='img/pp0.jpeg';
+		// shangpindatu.innerHTML="<img src='img/pp0.jpeg'>"
 	}
 	span3.onclick=function(){
 		span3.style.border="1px solid red";
 		span2.style.border="0px solid red";
-		shangpindatu.innerHTML="<img src='img/pp1.jpeg'>"
+
+		tu.src='img/pp1.jpeg';
+		// shangpindatu.innerHTML="<img src='img/pp1.jpeg'>"
 	}
 	span4.onclick=function(){
 		if(span2.style.border=="1px solid red"){
 			span3.style.border="1px solid red";
 			span2.style.border="0px solid red";
-			shangpindatu.innerHTML="<img src='img/pp1.jpeg'>"
+			tu.src='img/pp1.jpeg';
+			// shangpindatu.innerHTML="<img src='img/pp1.jpeg'>"
 		}
 		else{
 			span2.style.border="1px solid red";
 			span3.style.border="0px solid red";
-			shangpindatu.innerHTML="<img src='img/pp0.jpeg'>"
+			tu.src='img/pp0.jpeg';
+			Bimg.src=''
+			// shangpindatu.innerHTML="<img src='img/pp0.jpeg'>"
 		}
 	}
 </script>
