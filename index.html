@@ -127,6 +127,7 @@
 
 		}*/
 		#div1{
+			/*padding-top: 10px;*/
 			background-color: rgb(255,146,96);
 		}
 		#div1:hover{
@@ -302,7 +303,7 @@
 			<img src="img/logo_03.jpg" alt="">
 			<input type="text" value="输入商品或网址关键字，直通全网，快速帮5购！">
 			<p style="height: 45px;
-			width: 80px; background-color: rgb(254,110,0);line-height: 45px;text-align: center;margin-top: 20px;border-radius: 5px;">搜全网</p>
+			width: 80px; background-color: rgb(254,110,0);line-height: 45px;text-align: center;margin-top: 20px;border-radius: 5px;color: black;">搜全网</p>
 			<div class="topline2" style="margin-left: 70px;">
 				<div style="background-image: url(img/common_min.png);background-position: 0px 110px;height: 18px;width: 18px;margin: 0 auto;"></div>
 				<p style="margin-top: 5px;">400-085-0505</p>
@@ -559,7 +560,7 @@
 
 
 		<div id="biankuang">
-			<div id="div1" style="border-top-left-radius: 30px; position: absolute;top: 105px;right: 190px; height: 70px;width: 45px; background-image: url(img/xiaobang.png);background-repeat: no-repeat;" onmouseover="show1()" onmouseout="unshow1()">
+			<div id="div1" style="border-top-left-radius: 30px; position: absolute;top: 105px;right: 190px; height: 70px;width: 45px; background-image: url(img/xiaobang.png);background-position:0px 20px; background-repeat: no-repeat;" onmouseover="show1()" onmouseout="unshow1()">
 			 	<!-- <img src="img/xiaobang.png" alt=""> -->
 			</div>
 			<div id="div2" style="position: absolute;top: 180px;right: 190px;height: 140px;width: 45px;background-repeat: no-repeat;background-image: url(img/youhui.png);" onmouseover="show2()" onmouseout="unshow2()">
@@ -568,6 +569,7 @@
 			<div id="div3" style="position: absolute;top: 325px;right: 190px;height: 140px;width: 45px;" onmouseover="show3()" onmouseout="unshow3()">
 				<img src="img/phone.png" style="margin-top: 10px;margin-left: 15px;" alt="">
 				<img src="img/serwei.png" style="margin-left: 10px;margin-top: 40px;" alt="">
+				<!-- <img src="img/erwei.png" alt="" style="margin-top: 15px;margin-right: 3px;"> -->
 			</div>
 			<div id="div4" style="position: absolute;top: 470px;right: 190px;height: 140px;width: 45px;margin-left: 10px; background-image: url(img/cart.png);" onmouseover="show4()" onmouseout="unshow4()">
 				
@@ -801,7 +803,7 @@
 		}
 		function show3(){
 			var w=45;
-			console.log(div1.style.width);
+			// console.log(div1.style.width);
 			var a=setInterval(function(){
 				var	v=parseInt(div3.style.width);
 				if(v<100){
@@ -813,7 +815,7 @@
 					div3.style.width="100px"
 					clearInterval(a);
 				}},10);
-
+			div3.innerHTML='<img src="img/erwei.png" alt="" style="margin-top: 25px;margin-right: 3px;">';
 		}
 		function unshow3(){
 			var w=100;
@@ -827,10 +829,11 @@
 					div3.style.width="45px";
 					clearInterval(a);
 				}},10);
+			div3.innerHTML='<img src="img/phone.png" style="margin-top: 10px;margin-left: 15px;" alt=""><img src="img/serwei.png" style="margin-left: 10px;margin-top: 40px;" alt="">';
 		}
 		function show4(){
 			var w=45;
-			console.log(div1.style.width);
+			// console.log(div1.style.width);
 			var a=setInterval(function(){
 				var	v=parseInt(div4.style.width);
 				if(v<100){
