@@ -808,17 +808,20 @@
 			var w=45;
 			// console.log(div1.style.width);
 			var a=setInterval(function(){
-				var	v=parseInt(div3.style.width);
+			var	v=parseInt(div3.style.width);
 				if(v<100){
-					w+=5;
-					div3.style.width=w+"px";
-					console.log(w);
+					v+=5;
+					div3.style.width=v+"px";
+					// console.log(w);
 				}
 				else{
 					div3.style.width="100px"
+					div3.innerHTML='<img src="img/erwei.png" alt="" style="margin-top: 25px;margin-right: 3px;">';
 					clearInterval(a);
 				}},10);
-			div3.innerHTML='<img src="img/erwei.png" alt="" style="margin-top: 25px;margin-right: 3px;">';
+			// console.log(div3.style.width);
+			// div3.innerHTML='<img src="img/erwei.png" alt="" style="margin-top: 25px;margin-right: 3px;">';
+			
 		}
 		function unshow3(){
 			var w=100;
@@ -830,9 +833,12 @@
 				}
 				else{
 					div3.style.width="45px";
+					div3.innerHTML='<img src="img/phone.png" style="margin-top: 10px;margin-left: 15px;" alt=""><img src="img/serwei.png" style="margin-left: 10px;margin-top: 40px;" alt="">';
 					clearInterval(a);
 				}},10);
-			div3.innerHTML='<img src="img/phone.png" style="margin-top: 10px;margin-left: 15px;" alt=""><img src="img/serwei.png" style="margin-left: 10px;margin-top: 40px;" alt="">';
+				// div3.innerHTML='<img src="img/phone.png" style="margin-top: 10px;margin-left: 15px;" alt=""><img src="img/serwei.png" style="margin-left: 10px;margin-top: 40px;" alt="">';
+			
+			
 		}
 		function show4(){
 			var w=45;
