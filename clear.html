@@ -247,7 +247,7 @@
 			<li>|</li>
 			<li>防晒霜</li>
 			<li>|</li>
-			<li>伞</li>
+			<li style="margin-right: 200px;">伞</li>
 		</div>
 	</div>
 	<div id="temp">
@@ -527,13 +527,15 @@
  	}
   
     img1.onmousemove=function(ev){
+    	// console.log(document.documentElement.scrollTop);
 		var ev=ev||event;
 		var oL=ev.clientX-shangpindatu.offsetLeft-slider.offsetWidth/2;
-		var oT=ev.clientY-shangpindatu.offsetTop-slider.offsetHeight/2;  
+		var oT=ev.clientY-shangpindatu.offsetTop-slider.offsetHeight/2+document.documentElement.scrollTop; 
 		var oMaxw=img1.offsetWidth-slider.offsetWidth;
 		var oMaxh=img1.offsetHeight-slider.offsetHeight;
 		oL=oL>oMaxw?oMaxw:oL<0?0:oL;
 		oT=oT>oMaxh?oMaxh:oT<0?0:oT;
+		// oT+=document.documentElement.scrollTop;
 		slider.style.left = 396+oL+'px';
 		slider.style.top = 310+oT+'px' ;
 		var oBmaxw = img2.offsetWidth - 408; 
@@ -544,7 +546,6 @@
 		var x="-"+oL*2+"px";
 		var y="-"+oT*2+"px";
 		img2.style.backgroundPosition=x+" "+y;
-
 	}
 
 
